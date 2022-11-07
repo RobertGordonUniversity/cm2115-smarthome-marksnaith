@@ -1,34 +1,49 @@
 package uk.ac.rgu.cm2115;
 
-/*import java.io.IOException;
+import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;*/
+import uk.ac.rgu.cm2115.devices.Light;
+import javafx.stage.Stage;
+import uk.ac.rgu.cm2115.devices.SmartPlug;
+import uk.ac.rgu.cm2115.devices.Thermostat;
 
 /**
  * JavaFX App
  */
-public class MainApp {
+public class MainApp extends Application {
 
     public static void main(String[] args) {
 
         // JavaFX launch code - we'll get to this later
-        //launch();
+        launch();
     }
 
     /* Code below is for JavaFX - we'll get to this later in the module! */
 
-    /* 
+     
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("SmartHomeMain"), 640, 480);
         stage.setScene(scene);
         stage.show();
+
+        Home home = new Home();
+        
+        Light light = new Light("Living room");
+        SmartPlug plug = new SmartPlug("Kettle");
+        Thermostat thrm = new Thermostat("Whole house");
+
+        home.addDevice(light);
+        home.addDevice(plug);
+        home.addDevice(thrm);
+
+        setScene("SmartHomeMain", home);
     }
 
     static void setRoot(String fxml) throws IOException {
@@ -56,7 +71,6 @@ public class MainApp {
 
         scene.setRoot(root);
     }
-    */
 
 
 }
