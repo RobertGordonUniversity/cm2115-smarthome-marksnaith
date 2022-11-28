@@ -1,6 +1,8 @@
 package uk.ac.rgu.cm2115.devices;
 
-public class Light extends Device<LightStatus> implements Switchable, Dimmable{
+import uk.ac.rgu.cm2115.devices.diagnostics.DeviceVisitor;
+
+public abstract class Light extends Device<LightStatus> implements Switchable, Dimmable{
 
     private Color color;
 
@@ -10,9 +12,14 @@ public class Light extends Device<LightStatus> implements Switchable, Dimmable{
         this.status = LightStatus.OFF;
     }
 
+    @Override
+    public final void accept(DeviceVisitor visitor){
+        visitor.visit(this);
+    }
+
     public void switchOn(){
         System.out.println(this.name + " is switched on");
-        this.status = LightStatus.OFF;
+        this.status = LightStatus.ON;
     }
 
     public void switchOff(){
@@ -34,6 +41,10 @@ public class Light extends Device<LightStatus> implements Switchable, Dimmable{
         this.color.setR(r);
         this.color.setG(g);
         this.color.setB(b);
+    }
+
+    public final String getType(){
+        return "light";
     }
 
     public class Color{
