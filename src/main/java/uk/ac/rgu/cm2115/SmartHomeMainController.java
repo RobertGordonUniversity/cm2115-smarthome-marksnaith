@@ -79,7 +79,7 @@ public class SmartHomeMainController extends Controller<Home> {
      */
     private void addCommandButtons(){
         this.hBoxCommands.getChildren().clear();
-        
+
         Map<String, Command> commands = this.model.getCommands();
 
         commands.forEach((name, command) -> {
@@ -194,6 +194,9 @@ public class SmartHomeMainController extends Controller<Home> {
     }
 
     @FXML
+    /**
+     * Doesn't work with user-selected factories... :\
+     */
     private void btnSaveClick() {
         try {
             HomeData.save(this.model, "smarthome.csv");
