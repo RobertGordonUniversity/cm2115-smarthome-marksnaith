@@ -62,7 +62,25 @@ public class SmartHomeMainController extends Controller<Home> {
 
         this.factoryType.getSelectionModel().select(0);
 
-        Map<String, Command> commands = model.getCommands();
+        this.addCommandButtons();
+
+        this.comboDeviceType.getItems().add("Light");
+        this.comboDeviceType.getItems().add("Smart Plug");
+        this.comboDeviceType.getItems().add("Thermostat");
+
+        this.newDeviceCommands[0] = model::addLight;
+        this.newDeviceCommands[1] = model::addSmartPlug;
+        this.newDeviceCommands[2] = model::addThermostat;
+    }
+
+    /**
+     * Method to add the command buttons - it's needed in multiple places
+     * so better to extract as a seperate method to avoid code duplication
+     */
+    private void addCommandButtons(){
+        this.hBoxCommands.getChildren().clear();
+        
+        Map<String, Command> commands = this.model.getCommands();
 
         commands.forEach((name, command) -> {
             Button b = new Button(name);
@@ -75,14 +93,6 @@ public class SmartHomeMainController extends Controller<Home> {
             });
             this.hBoxCommands.getChildren().add(b);
         });
-
-        this.comboDeviceType.getItems().add("Light");
-        this.comboDeviceType.getItems().add("Smart Plug");
-        this.comboDeviceType.getItems().add("Thermostat");
-
-        this.newDeviceCommands[0] = model::addLight;
-        this.newDeviceCommands[1] = model::addSmartPlug;
-        this.newDeviceCommands[2] = model::addThermostat;
     }
 
     @FXML
@@ -117,23 +127,8 @@ public class SmartHomeMainController extends Controller<Home> {
             /* Clear the text in the device name */
             this.txtDeviceName.clear();
 
-            /* Add the Command buttons - but clear the original ones first */
-            this.hBoxCommands.getChildren().clear();
-
-            Map<String, Command> commands = this.model.getCommands();
-
-            commands.forEach((n, command) -> {
-                Button b = new Button(n);
-                b.setOnAction((e) -> {
-                    command.execute();
-                    Device<?> device = this.lstDevices.getSelectionModel().getSelectedItem();
-                    if (device != null) {
-                        this.lblStatus.setText(device.getStatus().toString());
-                    }
-                });
-                this.hBoxCommands.getChildren().add(b);
-            });
-
+            /* Update the Command buttons */
+            this.addCommandButtons();
         }
     }
 
