@@ -15,7 +15,7 @@
       <Label fx:id="lblName" layoutX="270.0" layoutY="42.0" prefHeight="17.0" prefWidth="176.0" />
       <Button fx:id="btnCreateRoutine" layoutX="270.0" layoutY="89.0" mnemonicParsing="false" onAction="#btnCreateRoutineClick" text="Create a routine" />
       <Button layoutX="270.0" layoutY="131.0" mnemonicParsing="false" onAction="#runDiagnostic" text="Run diagnostic" />
-      <ComboBox fx:id="comboDeviceType" layoutX="163.0" layoutY="269.0" prefWidth="150.0" promptText="Add device type..." />
+      <ComboBox fx:id="comboDeviceType" layoutX="170.0" layoutY="269.0" prefWidth="150.0" promptText="Add device type..." />
       <TextField fx:id="txtDeviceName" layoutX="327.0" layoutY="269.0" promptText="Device name..." />
       <Button layoutX="497.0" layoutY="269.0" mnemonicParsing="false" onAction="#btnAddDeviceClick" text="Add Device" />
       <TextField fx:id="txtFilterDevices" layoutX="14.0" layoutY="226.0" onKeyTyped="#txtFilterDevicesOnChange" promptText="Filter devices..." />

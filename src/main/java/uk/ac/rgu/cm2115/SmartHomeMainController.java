@@ -58,7 +58,7 @@ public class SmartHomeMainController extends Controller<Home> {
 
         this.lstDevices.getItems().addAll(model.getDevices());
 
-        this.factoryType.getItems().addAll(model.getFactories());
+        this.factoryType.getItems().addAll(model.getFactories().values());
 
         this.factoryType.getSelectionModel().select(0);
 
@@ -113,6 +113,27 @@ public class SmartHomeMainController extends Controller<Home> {
             this.newDeviceCommands[index].execute(name);
             this.lstDevices.getItems().clear();
             this.lstDevices.getItems().addAll(this.model.getDevices());
+
+            /* Clear the text in the device name */
+            this.txtDeviceName.clear();
+
+            /* Add the Command buttons - but clear the original ones first */
+            this.hBoxCommands.getChildren().clear();
+
+            Map<String, Command> commands = this.model.getCommands();
+
+            commands.forEach((n, command) -> {
+                Button b = new Button(n);
+                b.setOnAction((e) -> {
+                    command.execute();
+                    Device<?> device = this.lstDevices.getSelectionModel().getSelectedItem();
+                    if (device != null) {
+                        this.lblStatus.setText(device.getStatus().toString());
+                    }
+                });
+                this.hBoxCommands.getChildren().add(b);
+            });
+
         }
     }
 

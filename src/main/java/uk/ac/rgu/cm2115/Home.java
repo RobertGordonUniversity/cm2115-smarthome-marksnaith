@@ -28,9 +28,9 @@ public class Home {
 
     private DeviceFactory factory;
 
-    private List<DeviceFactory> factories;
+    private Map<String, DeviceFactory> factories;
 
-    public List<DeviceFactory> getFactories() {
+    public Map<String, DeviceFactory> getFactories() {
         return factories;
     }
 
@@ -38,11 +38,11 @@ public class Home {
         this.factory = factory;
         this.devices = new ArrayList<>();
         this.commands = new HashMap<>();
-        this.factories = new ArrayList<>();
+        this.factories = new HashMap<>();
     }
 
     public void addFactory(DeviceFactory factory){
-        this.factories.add(factory);
+        this.factories.put(factory.toString(), factory);
     }
 
     public void setFactory(DeviceFactory factory){
@@ -59,7 +59,7 @@ public class Home {
 
     public Command getCommand(String name) throws CommandNotExistException {
         Command command = this.commands.get(name.toLowerCase());
-        
+
         if (command == null) {
             throw new CommandNotExistException("Command " + name + " does not exist");
         }

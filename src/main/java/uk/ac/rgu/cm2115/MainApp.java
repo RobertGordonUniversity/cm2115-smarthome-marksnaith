@@ -1,24 +1,16 @@
 package uk.ac.rgu.cm2115;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import uk.ac.rgu.cm2115.devices.Device;
 import uk.ac.rgu.cm2115.devices.DeviceFactory;
-import uk.ac.rgu.cm2115.devices.Light;
 import javafx.stage.Stage;
-import uk.ac.rgu.cm2115.devices.SmartPlug;
-import uk.ac.rgu.cm2115.devices.Thermostat;
 import uk.ac.rgu.cm2115.devices.Apple.AppleDeviceFactory;
 import uk.ac.rgu.cm2115.devices.amazon.AmazonDeviceFactory;
-import uk.ac.rgu.cm2115.devices.diagnostics.DeviceVisitor;
-import uk.ac.rgu.cm2115.devices.diagnostics.SimpleDiagnosticVisitor;
 
 /**
  * JavaFX App
